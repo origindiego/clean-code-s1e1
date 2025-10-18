@@ -28,7 +28,8 @@
   width: 500px;
   margin: 0 auto 0;
 }
-.task-input, .task-label {
+.task-input, 
+.task-label {
   width: 56%;
   display: inline-block;
   flex-grow: 1;
@@ -44,10 +45,15 @@
 .list-item {
   list-style: none;
 }
-.task-input,.button-add,.button-edit,.button-delete{
+.task-input,
+.button-add,
+.button-edit,
+.button-delete {
   outline: none;
 }
-.button-add,.button-edit,.button-delete {
+.button-add,
+.button-edit,
+.button-delete {
   background: none;
   border: 0px;
   color: #888;
@@ -56,7 +62,9 @@
   font-family: Lato, sans-serif;
   cursor: pointer;
 }
-.button-add:hover, .button-edit:hover, .button-delete:hover {
+.button-add:hover, 
+.button-edit:hover, 
+.button-delete:hover {
   color: #3a3a3a;
 }
 /* Heading */
