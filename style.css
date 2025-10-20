@@ -1,4 +1,3 @@
-/* Basic Style */
 .page {
   background-color: #f8f8f8;
   color: #333;
@@ -132,4 +131,19 @@
 }
 .button:hover {
   color: #3a3a3a;
+}
+
+/* Hide semantics */
+
+.page__title,
+.matrix__caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
