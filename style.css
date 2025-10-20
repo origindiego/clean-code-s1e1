@@ -4,14 +4,22 @@
   color: #333;
   font-family: Lato, sans-serif;
 }
+.page-title {
+  width: 100%;
+  text-align: center;
+}
 .matrix-container {
   width: 500px;
   margin: 0 auto;
   display: block;
   text-align: right;
 }
+.matrix-caption {
+  margin-bottom: 10px;
+}
 .matrix-img {
   width: 100%;
+  display: block;
 }
 .details-link {
   font-family: fantasy, cursive;

@@ -8,8 +8,9 @@
 
 // Event handling, user interaction is what starts the code execution.
 
+var taskForm=document.getElementById("add-task-form");
 var taskInput=document.getElementById("new-task");//Add a new task.
-var addButton=document.getElementsByTagName("button")[0];//first button
+var addButton=null;//use form
 var incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incomplete-tasks
 var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
@@ -44,10 +45,13 @@ var createNewTaskElement=function(taskString){
     
     editInput.type="text";
     editInput.className="task-input";
+    editInput.setAttribute("aria-hidden", "true");
 
+    editButton.type="button";
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
     editButton.className="button button-edit";
 
+    deleteButton.type="button";
     deleteButton.className="button button-delete";
     deleteButtonImg.src='./remove.svg';
     deleteButtonImg.className="delete-icon";
@@ -66,7 +70,8 @@ var createNewTaskElement=function(taskString){
 
 
 var addTask=function(){
-    console.log("Add Task...");
+    console.log("Add new task...");
+    if (event && event.preventDefault) event.preventDefault();
     //Create a new list item with the text from the #new-task:
     if (!taskInput.value) return;
     var listItem=createNewTaskElement(taskInput.value);
@@ -99,9 +104,12 @@ var editTask=function(){
         //label becomes the inputs value.
         label.innerText=editInput.value;
         editBtn.innerText="Edit";
+        editInput.setAttribute("aria-hidden", "true");
     }else{
         editInput.value=label.innerText;
         editBtn.innerText="Save";
+        editInput.removeAttribute("aria-hidden");
+        editInput.focus();
     }
 
     //toggle .edit-mode on the parent.
@@ -129,9 +137,7 @@ var taskCompleted=function(){
     var listItem=this.parentNode;
     completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
-
 }
-
 
 var taskIncomplete=function(){
     console.log("Incomplete Task...");
@@ -150,12 +156,10 @@ var ajaxRequest=function(){
 }
 
 //The glue to hold it all together.
-
-
-//Set the click handler to the addTask function.
-addButton.onclick=addTask;
-addButton.addEventListener("click",addTask);
-addButton.addEventListener("click",ajaxRequest);
+// add new task handler
+if (taskForm) {
+  taskForm.addEventListener("submit", addTask);
+}
 
 
 var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
